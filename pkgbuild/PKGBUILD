@@ -1,14 +1,14 @@
-# Maintainer: Tales A. Mendonça <talesam@gmail.com>
+# Maintainer: Vilmar Catafesta <vcatafesta@gmail.com>
 
-pkgname=pkgbuild-template
-pkgdesc="Package template for Communitybig"
+pkgname=comm-config
+pkgdesc="Complete control center to use in BigLinux with DE's"
 # Uncomment and edit the following lines as needed
-#depends=('')
+depends=('bigbashview' 'kdialog' 'bigcontrolcenter-base')
+conflicts=('biglinux-config')
+provides=('biglinux-config')
+replaces=('biglinux-config')
 #makedepends=('')
 #optdepends=('')
-#conflicts=('')
-#provides=('')
-#replaces=('')
 pkgver=$(date +%y.%m.%d)
 pkgrel=$(date +%H%M)
 arch=('any')
