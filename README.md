@@ -1,3 +1,3 @@
-# pkgbuild-template
+# comm-config
 
-Package description
+Complete control center to use in BigLinux with DE's
