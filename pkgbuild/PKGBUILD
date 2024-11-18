@@ -1,6 +1,6 @@
 # Maintainer: Vilmar Catafesta <vcatafesta@gmail.com>
 
-pkgname=comm-config
+pkgname=comm-restore-config
 pkgdesc="Central de controle para restaurar configurações de ambiente e aplicativos"
 # Uncomment and edit the following lines as needed
 depends=('bigbashview' 'kdialog' 'bigcontrolcenter-base')
