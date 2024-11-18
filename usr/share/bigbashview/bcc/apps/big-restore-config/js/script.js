@@ -1,5 +1,5 @@
 /*
-#  /usr/share/bigbashview/bcc/apps/biglinux-config/js/script.js
+#  /usr/share/bigbashview/bcc/apps/big-restore-config/js/script.js
 #  Description: JS Library for BigLinux Config
 #
 #  Created: 2024/05/31

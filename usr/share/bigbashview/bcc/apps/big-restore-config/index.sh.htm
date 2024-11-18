@@ -6,7 +6,7 @@
 #  Description: Restore Settings to help usage of BigLinux
 #
 #  Created: 2020/09/01
-#  Altered: 2024/08/15
+#  Altered: 2024/11/17 - 11:38:01 -04
 #
 #  Copyright (c) 2023-2024, Vilmar Catafesta <vcatafesta@gmail.com>
 #                2020-2023, Bruno Gonçalves <www.biglinux.com.br>
@@ -35,8 +35,8 @@
 #  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 APP="${0##*/}"
-_DATE_ALTERED_='17-08-2024 - 05:07'
-_VERSION_="1.0.0-20240817"
+_DATE_ALTERED_='17-11-2024 - 11:38'
+_VERSION_="1.0.0-20241117"
 _HTML_VERSION_="${_VERSION_} - ${_DATE_ALTERED_}"
 _UPDATED_="${_DATE_ALTERED_}"
 export BOOTLOG="/tmp/big-config-$USER-$(date +"%d%m%Y").log"
@@ -54,7 +54,7 @@ function sh_bcfg_config() {
 	export TEXTDOMAINDIR="/usr/share/locale"
 	export TEXTDOMAIN=biglinux-config
 	declare -gA aMenu=(
-										[TITLE]="$(gettext "Big-Config - Restaurar Configurações de Aplicativos")"
+							 [TITLE]="$(gettext "Big-Restore-Config - Restaurar Configurações de Aplicativos")"
 							 [Principais]="$(gettext "Principais")"
 							 [Internet]="$(gettext "Internet")"
 							 [Multimidia]="$(gettext "Multimídia")"
@@ -365,7 +365,7 @@ function sh_bcfg_start_html() {
 
 									<li>$(gettext "Aplicativo"):
 									<div id="div-about-color">
-									<br>&nbsp;&nbsp;&nbsp;&nbsp;$(gettext "Nome") : $TEXTDOMAIN</span>
+									<br>&nbsp;&nbsp;&nbsp;&nbsp;$(gettext "Nome") : big-restore-config</span>
 									<br>&nbsp;&nbsp;&nbsp;&nbsp;$(gettext "Htm versão") : $_HTML_VERSION_
 									<br>&nbsp;&nbsp;&nbsp;&nbsp;$(gettext "Lib versão") : $_BCFGLIB_VERSION_
 									</div>
