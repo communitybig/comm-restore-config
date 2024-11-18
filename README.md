@@ -1,3 +1,3 @@
-# comm-config
+# comm-restore-config
 
-Complete control center to use in BigLinux with DE's
+Central de controle para restaurar configurações de ambiente e aplicativos

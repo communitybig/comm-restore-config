@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Big Config - Restore Settings
-Name[pt_BR]=Big Config - Restaurar Configurações de Applicativos
+Name=Big Restore Config - Restore Config Settings
+Name[pt_BR]=Big Restore Config - Restaurar Configurações de Applicativos
 Name[es]=Big-Config Restaurar Configuraciones
 Name[bg]=Big-Config Възстановяване на настройки
 Name[cs]=Big-Config Obnovit nastavení
@@ -32,5 +32,5 @@ StartupNotify=true
 Terminal=false
 Type=Application
 MimeType=text/html;text/xml;application/xhtml_xml;
-Exec=big-config
-Icon=big-config
+Exec=big-restore-config
+Icon=big-restore-config

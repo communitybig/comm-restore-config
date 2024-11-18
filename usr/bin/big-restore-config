@@ -2,8 +2,8 @@
 #shellcheck disable=SC2155,SC2034,SC1135
 #shellcheck source=/dev/null
 
-#  /usr/bin/biglinux-config
-#  Description: Restore Settings to help usage of BigLinux
+#  /usr/bin/big-restore-config
+#  Description: Central de controle para restaurar configurações de ambiente e aplicativos
 #
 #  Created: 2020/09/01
 #  Altered: 2024/07/02
@@ -36,11 +36,11 @@
 
 APP="${0##*/}"
 _VERSION_="1.0.0-20240702"
-export BOOTLOG="/tmp/big-config-$USER-$(date +"%d%m%Y").log"
+export BOOTLOG="/tmp/big-restore-config-$USER-$(date +"%d%m%Y").log"
 export LOGGER='/dev/tty8'
-export HOME_FOLDER="$HOME/.big-config"
-export TMP_FOLDER="/tmp/big-config-$USER"
-export INI_FILE_BIG_CONFIG="$HOME_FOLDER/big-config.ini"
+export HOME_FOLDER="$HOME/.big-restore-config"
+export TMP_FOLDER="/tmp/big-restore-config-$USER"
+export INI_FILE_BIG_CONFIG="$HOME_FOLDER/big-restore-config.ini"
 LIBRARY=${LIBRARY:-'/usr/share/bigbashview/bcc/shell'}
 [[ -f "${LIBRARY}/bcclib.sh" ]] && source "${LIBRARY}/bcclib.sh"
 [[ -f "${LIBRARY}/tinilib.sh" ]] && source "${LIBRARY}/tinilib.sh"
@@ -53,11 +53,11 @@ function sh_big_config() {
 	#Translation
 	export TEXTDOMAINDIR="/usr/share/locale"
 	export TEXTDOMAIN=biglinux-config
-	declare -g bigconfigpath='/usr/share/bigbashview/bcc/apps/biglinux-config'
+	declare -g bigconfigpath='/usr/share/bigbashview/bcc/apps/big-restore-config'
 	declare -g bigconfig_icon_file='icons/icon.png'
-	declare -g TITLE="Big-Config - Restaurar Configurações de Aplicativos"
+	declare -g TITLE="Big-Restore-Config - Restaurar Configurações de Aplicativos"
 	declare -gA Amsg=(
-		[error_open]=$(gettext $"Outra instância do Big-Config já está em execução.")
+		[error_open]=$(gettext $"Outra instância do Big-Restore-Config já está em execução.")
 		[error_access_dir]=$(gettext $"Erro ao acessar o diretório:")
 	)
 }
@@ -71,10 +71,10 @@ export -f sh_big_config_check_dirs
 function sh_check_big_config_is_running() {
 	local PID
 
-	if PID=$(pgrep -f 'Big-Config') && [[ -n "$PID" ]]; then
+	if PID=$(pgrep -f 'Big-Restore-Config') && [[ -n "$PID" ]]; then
 		#		notify-send -u critical --icon=big-store --app-name "$0" "$TITLE" "${Amsg[error_open]}" --expire-time=2000
 		#		kdialog --title "$TITLE" --icon warning --msgbox "${Amsg[error_open]}"
-		yad --title "$TITLE" --image=big-config --text "${Amsg[error_open]}\nPID:$PID" --button="OK":0
+		yad --title "$TITLE" --image=big-restore-config --text "${Amsg[error_open]}\nPID:$PID" --button="OK":0
 		exit 1
 	fi
 }
@@ -91,7 +91,7 @@ function sh_big_config_main {
 
 	sh_big_config_check_dirs
 	cd "$bigconfigpath" || {
-		notify-send --icon=big-config --app-name "$0" "$TITLE" "${Amsg[error_access_dir]}\n$bigconfigpath" --expire-time=2000
+		notify-send --icon=big-restore-config --app-name "$0" "$TITLE" "${Amsg[error_access_dir]}\n$bigconfigpath" --expire-time=2000
 		return 1
 	}
 
@@ -128,6 +128,17 @@ function sh_big_config_main {
 		;;
 	WAYLAND)
 		MOZ_ENABLE_WAYLAND=1 \
+			bigbashview index.sh.htm \
+			-n "$TITLE" \
+			-s "${default_size}" \
+			-i "$bigconfig_icon_file" \
+			-d "$bigconfigpath"
+		;;
+	*)
+		QT_QPA_PLATFORM=xcb \
+			SDL_VIDEODRIVER=x11 \
+			WINIT_UNIX_BACKEND=x11 \
+			GDK_BACKEND=x11 \
 			bigbashview index.sh.htm \
 			-n "$TITLE" \
 			-s "${default_size}" \
