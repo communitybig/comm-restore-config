@@ -34,3 +34,4 @@ Type=Application
 MimeType=text/html;text/xml;application/xhtml_xml;
 Exec=big-restore-config
 Icon=big-restore-config
+StartupWMClass=BigBashView
